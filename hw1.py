@@ -29,10 +29,6 @@ def can_pay_with_two_coins(denoms, amount):
         i += 1;
     #If we get here, we tried all combos and nothing worked, return false
     return False;
-    
-# print( can_pay_with_two_coins([1, 5, 10, 25], 35) ) #True
-# print( can_pay_with_two_coins([1, 5, 10, 25], 20) ) #True
-# print( can_pay_with_two_coins([1, 5, 10, 25], 12) ) #False
 
 
 #Input: (str) -> bool
@@ -44,11 +40,7 @@ def all_fluffy(s):
         if( fluffyLetters.find(s[idx])==-1 ): return False;
     return True;
 
-# print( all_fluffy('fullfly') ) #True
-# print( all_fluffy('firefly') ) #False
 
-
-#TODO:
 #Precondition: s.isdigit() holds for each string s in nums_list.
 #Input: (list of str) -> int
 #Output: the sum of all the digits in all strings in nums_list.
@@ -59,15 +51,16 @@ def digital_sum(nums_list):
             total += int( nums_list[i][j] ); #Read char value as int
     return total;
 
-print( digital_sum(['64', '128', '256']) ) #34
-print( digital_sum(['12', '3']) ) #6
 
-
-#TODO:
 #Input: (int) -> int
 #Output: the number of steps it takes to reach 1, by applying the two steps
 #        of the Collatz conjecture beginning from n.
 def count_collatz_steps(n):
-    return -1;
+    numSteps = 0;
 
-# print( count_collatz_steps(6) )#8
+    while(n!=1):
+        if(n%2==0): n /= 2;
+        else: n = 3*n + 1;
+        numSteps += 1;
+
+    return numSteps;
