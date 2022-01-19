@@ -7,8 +7,6 @@
 # Output: Greatest absolute difference between numbers at corresponding
 #         positions in nums1 and nums2.
 def greatest_difference(nums1, nums2):
-    if( len(nums1)==0 | len(nums1)!=len(nums2) ): return -1
-
     maxDiff = 0
     currDiff = maxDiff
     for idx in range( len(nums1) ):
