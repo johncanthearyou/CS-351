@@ -7,11 +7,11 @@ serversocket = socket.socket(
 
 # get local machine name
 host = socket.gethostname()                           
-
 port = 9999                                           
 
 # bind to the port
-serversocket.bind((host, port))                                  
+serversocket.bind((host, port))
+print("Ready to serve at> %s:%s" % host % port )                               
 
 # queue up to 5 requests
 serversocket.listen(5)                                           
