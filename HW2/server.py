@@ -1,4 +1,3 @@
-#!/usr/bin/python3           # This is server.py file
 import socket                                         
 
 # create a socket object
@@ -22,6 +21,14 @@ while True:
 
    print("Got a connection from %s" % str(addr))
     
-   msg = 'Thank you for connecting'+ "\r\n"
+   #TODO: Get File
+
+   #TODO: Parse file for number of lines, words, & character
+   num_lines = 1
+   num_words = 2
+   num_chars = 3
+   msg = format("Lines: %d\nWords: %d\nCharacters: %d" 
+                    % (num_lines, num_words, num_chars))
+
    clientsocket.send(msg.encode('ascii'))
    clientsocket.close()
