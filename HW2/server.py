@@ -28,8 +28,8 @@ while True:
     print("Got a connection from %s" % str(addr))
 
     # Get File Name & Data
-    file_name = client_socket.recv(1024)
-    file_data = client_socket.recv(1024)
+    file_name = client_socket.recv(1024).decode()
+    file_data = client_socket.recv(1024).decode()
 
     # Open file and write received data to it
     file = open(file_name, "w")
