@@ -1,20 +1,23 @@
- #!/usr/bin/python3           # This is client.py file
-
 import socket
+from sys import argv
 
 # create a socket object
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# get local machine name
-host = "ip-172-31-28-157"                           
-
+# Hardcode Server IP address
+host = "ip-172-31-28-157"
 port = 9999
 
 # connection to hostname on the port.
-s.connect((host, port))                               
+client_socket.connect((host, port))
 
-# Receive no more than 1024 bytes
-msg = s.recv(1024)                                     
+# Open & Read File
+file_name = argv[1]
+file = open(file_name, "r")
+file_data = file.read()
 
-s.close()
-print (msg.decode('ascii'))
+# Send File Name & Data from server
+client_socket.send(file_name.encode())
+client_socket.send(file_data.encode())
+
+client_socket.close()
