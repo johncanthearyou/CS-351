@@ -41,8 +41,9 @@ while True:
     print('\tReceived File Data\n')
 
     # Create file and write received data to it
-    file = open(file_name, 'x')
+    file = open(file_name, 'w')
     file.write(file_data)
+    file.seek(0)
 
     # Process file data, send result to client
     msg = get_wc(file_name).encode('ascii')
