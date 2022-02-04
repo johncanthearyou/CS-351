@@ -6,7 +6,8 @@ def get_wc(file_name):
     words = 0
     chars = 0
 
-    file = open(file_name).seek(0)
+    file = open(file_name)
+    file.seek(0)
     for line in file:
         print(line)
         lines += 1
