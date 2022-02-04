@@ -39,7 +39,7 @@ while True:
     print('\tReceived File Data\n')
 
     # Create file and write received data to it
-    file = open(file_name, 'w')
+    file = open(file_name, 'w+')
     file.write(file_data)
     file.seek(0)
 
