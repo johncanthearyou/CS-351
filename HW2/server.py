@@ -1,13 +1,11 @@
 import socket
 import os
 
-def get_wc(file_name):
+def get_wc(file):
     lines = 0
     words = 0
     chars = 0
 
-    file = open(file_name)
-    file.seek(0)
     for line in file:
         print(line)
         lines += 1
@@ -46,7 +44,7 @@ while True:
     file.seek(0)
 
     # Process file data, send result to client
-    msg = get_wc(file_name).encode('ascii')
+    msg = get_wc(file).encode('ascii')
     client_socket.send(msg)
 
     # Don't keep received file around
