@@ -5,13 +5,13 @@ def get_wc(file_name):
     lines = 0
     words = 0
     chars = 0
-    with open(file_name) as file:
-        print(file.read())
-        for line in file:
-            print(line)
-            lines += 1
-            words += len(line.split())
-            chars += len(line)
+
+    file = open(file_name).seek(0)
+    for line in file:
+        print(line)
+        lines += 1
+        words += len(line.split())
+        chars += len(line)
 
     return f'File: {file_name}\n\tLines: {lines}\n\tWords: {words} \n\tCharacters: {chars}'
 
