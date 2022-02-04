@@ -14,7 +14,6 @@ def get_wc(file):
     chars = 0
 
     for line in file:
-        print(line)
         lines += 1
         words += len(line.split())
         chars += len(line)
