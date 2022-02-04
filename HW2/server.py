@@ -1,18 +1,19 @@
 import socket
+import os
 
-def get_wc(file_contents):
+def get_wc(file_name):
     lines = 0
     words = 0
     chars = 0
-    first_iter = True
-    for char in file_contents:
-        if(char == '\n' or char == ' ' or char == '\t'):
-            if(char == '\n'):
-                lines += 1
-            words += 1
-        chars += 1
+    with open(file_name) as file:
+        print(file.read())
+        for line in file:
+            print(line)
+            lines += 1
+            words += len(line.split())
+            chars += len(line)
 
-    return f'File: {file_name}\n\tLines:{lines}\n\tWords:{words} \n\tCharacters:{chars}'
+    return f'File: {file_name}\n\tLines: {lines}\n\tWords: {words} \n\tCharacters: {chars}'
 
 
 # create a socket object
@@ -25,27 +26,30 @@ port = 4455
 # Bind server to the IP:Port address
 server_socket.bind((host, port))
 server_socket.listen()
-print('Ready to serve at> %s:%s' % (host, port))
+print(f'Ready to serve at> {host}:{port}')
 
 while True:
     # Accept incoming connection
     client_socket, addr = server_socket.accept()
-    print('Got a connection from %s' % str(addr))
+    print(f'Got a connection from {addr}')
 
     # Get File Name & Data
     file_name = client_socket.recv(4096).decode()
-    print('\tGot File Name: %s' % file_name)
+    print(f'\tGot File Name: {file_name}')
     file_data = client_socket.recv(4096).decode()
     print('\tReceived File Data\n')
 
-    # Open file and write received data to it
-    file = open(file_name, 'w')
+    # Create file and write received data to it
+    file = open(file_name, 'x')
     file.write(file_data)
     file.close
 
     # Process file data, send result to client
-    msg = get_wc(file_data).encode('ascii')
+    msg = get_wc(file_name).encode('ascii')
     client_socket.send(msg)
+
+    # Don't keep received file around
+    os.remove(file_name)
 
     # Close connection to this client
     client_socket.close()
