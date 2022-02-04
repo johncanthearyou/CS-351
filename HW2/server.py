@@ -43,13 +43,13 @@ while True:
     # Create file and write received data to it
     file = open(file_name, 'x')
     file.write(file_data)
-    file.close
 
     # Process file data, send result to client
     msg = get_wc(file_name).encode('ascii')
     client_socket.send(msg)
 
     # Don't keep received file around
+    file.close()
     os.remove(file_name)
 
     # Close connection to this client
