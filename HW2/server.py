@@ -22,7 +22,7 @@ def get_wc(file):
         words += len(line.split())
         chars += len(line)
 
-    return f'\tLines: {lines}\n\tWords: {words} \n\tCharacters: {chars}'
+    return f'\tLines: {lines}\n\tWords: {words}\n\tCharacters: {chars}'
 
 # This function creates a socket and listens for incoming requests
 #     until the program is terminated
