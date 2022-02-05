@@ -46,6 +46,7 @@ def main(file_name):
         #File is empty, don't need to process on server
         result = '\tLines: 0\n\tWords: 0\n\tCharacters: 0'
     else:
+        file.seek(0) #Go back to beggining of file
         result = send_to_server(file)
 
     file.close() #close the file object
