@@ -22,16 +22,18 @@ def main(file_name):
 
     # Open & Read File
     file = open(file_name, 'r')
-    file_data = file.read()
 
-    # Send File Data to the server
-    client_socket.send(file_data.encode('ascii'))
-
-    # Receive the result string from the server
-    if(file.seek(0, os.SEEK_END)!=0):
-        result = client_socket.recv(size).decode('ascii')
-    else:
+    if(file.seek(0, os.SEEK_END)==0):
+        #File is empty, don't need to process on server
         result = '\tLines: 0\n\tWords: 0\n\tCharacters: 0'
+    else:
+        #File isn't empty, read file contents
+        file_data = file.read()
+        # Send File Data to the server
+        client_socket.send(file_data.encode('ascii'))
+        # Receive the result string from the server
+        result = client_socket.recv(size).decode('ascii')
+
     print(f'File: {file_name}\n{result}')
 
     file.close() #close the file object
