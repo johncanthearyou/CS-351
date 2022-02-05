@@ -55,7 +55,6 @@ def main():
 
         # Get file data
         file_data = client_socket.recv(size).decode()
-        print(file.seek(0, os.SEEK_END))
         print('\tReceived File Data\n')
 
         # Create temporary file and write received data to it
