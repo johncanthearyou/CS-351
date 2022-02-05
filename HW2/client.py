@@ -1,4 +1,5 @@
 import socket
+import os
 from sys import argv
 
 # Hardcode Server IP address
@@ -21,6 +22,7 @@ def main(file_name):
 
     # Open & Read File
     file = open(file_name, 'r')
+    print(file.seek(0, os.SEEK_END))
     file_data = file.read()
 
     # Send File Data to the server
