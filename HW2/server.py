@@ -40,12 +40,12 @@ def main():
     # Bind server to the IP:Port address
     server_socket.bind((host, port))
     server_socket.listen()
-    print(f'Ready to serve at> {host}:{port}')
+    print(f'Ready to serve at> {host}:{port}\n')
 
     while True:
         # Accept incoming connection
         client_socket, addr = server_socket.accept()
-        print(f'Got a connection from {addr}')
+        print(f'> Got a connection from {addr}')
 
         # Get file data
         file_data = client_socket.recv(size).decode()
