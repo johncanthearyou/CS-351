@@ -1,3 +1,8 @@
+# John Stockton
+# CS-351
+# Dr. Wang
+# Winter 2022
+
 import socket
 import os
 
@@ -5,6 +10,7 @@ import os
 host = socket.gethostname()
 port = 4455
 size = 4096
+encoding = 'utf-8'
 file_name = 'tmpfile'
 
 # Function get_wc takes a file object and computes the number of lines,
@@ -25,14 +31,14 @@ def get_wc(file):
     return f'\tLines: {lines}\n\tWords: {words}\n\tCharacters: {chars}'
 
 # This function creates a socket and listens for incoming requests
-#     until the program is terminated
+#     until the program is terminated (ctrl+c)
 # Upon Client Connection:
 #   1. A client will connect and send this server a file's content
 #   2. This server will count the number of lines, words, 
 #      and characters the the received file
 #   3. This server will send a formatted string to the client of the
-#      number of lines, words, and characters and close the connection
-#      to the client
+#      number of lines, words, and characters back to the client
+#   4. This server will close the connection to the client
 def main():
     # create a socket object
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -52,13 +58,13 @@ def main():
         print(file.seek(0, os.SEEK_END))
         print('\tReceived File Data\n')
 
-        # Create file and write received data to it
+        # Create temporary file and write received data to it
         file = open(file_name, 'w+')
         file.write(file_data)
         file.seek(0)
 
         # Process file data, send result to client
-        msg = get_wc(file).encode('ascii')
+        msg = get_wc(file).encode(encoding)
         client_socket.send(msg)
 
         # Delete file from the directory
