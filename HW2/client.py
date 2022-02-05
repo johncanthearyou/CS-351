@@ -27,8 +27,8 @@ def main(file_name):
     client_socket.send(file_data.encode('ascii'))
 
     # Receive the result string from the server
-    message = client_socket.recv(size).decode('ascii')
-    print(f'File: {file_name}\n{message}')
+    result = client_socket.recv(size).decode('ascii')
+    print(f'File: {file_name}\n{result}')
 
     file.close() #close the file object
     client_socket.close() #close connection to server
