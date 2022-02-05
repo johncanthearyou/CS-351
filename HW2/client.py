@@ -32,14 +32,14 @@ def main(file_name):
 
         # Send File Data to the server
         client_socket.send(file_data.encode('ascii'))
-        
+
         # Receive the result string from the server
         result = client_socket.recv(size).decode('ascii')
+ 
+        client_socket.close() #close connection to server
+    file.close() #close the file object
 
     print(f'File: {file_name}\n{result}')
-
-    file.close() #close the file object
-    client_socket.close() #close connection to server
 
 # Invoke main
 if(__name__ == '__main__'):
