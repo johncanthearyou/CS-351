@@ -18,7 +18,7 @@ To run server.py use this command in the terminal:
 Once server.py is running, it will print the IP address and port number
     on which it is listening. In order to run client.py you MUST copy this
     IP address (without the port number) and paste it into the string defined
-    in line #6 of client.py. 
+    in line #11 of client.py. 
 
 To run client server.py use this command in the terminal:
     `python client.py <exampleFileName>` OR `python3 client.py <exampleFileName>`
