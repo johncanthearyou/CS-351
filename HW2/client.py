@@ -14,12 +14,6 @@ size = 4096
 #     and characters in that file. The client then prints that returned
 #     string to the standard ouput (terminal)
 def main(file_name):
-    # create a socket object
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-    # connection to hostname on the port.
-    client_socket.connect((host, port))
-
     # Open & Read File
     file = open(file_name, 'r')
 
@@ -27,10 +21,18 @@ def main(file_name):
         #File is empty, don't need to process on server
         result = '\tLines: 0\n\tWords: 0\n\tCharacters: 0'
     else:
+        # create a socket object
+        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+        # connection to hostname on the port.
+        client_socket.connect((host, port))
+
         #File isn't empty, read file contents
         file_data = file.read()
+
         # Send File Data to the server
         client_socket.send(file_data.encode('ascii'))
+        
         # Receive the result string from the server
         result = client_socket.recv(size).decode('ascii')
 
