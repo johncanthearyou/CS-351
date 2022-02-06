@@ -13,12 +13,6 @@ port = 4455
 size = 4096
 encoding = 'utf-8'
 
-# This function takes a file object and sends it to the server to be 
-#   processed for number of lines, words, and characters
-# Precondition: The file is not empty
-# Input: File, the (non-empty) file to be sent to the server
-# Output: str, formatted string containing the results of the 
-#         server's processing
 def send_to_server(file):
     # create a socket object
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
